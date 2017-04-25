@@ -1,0 +1,27 @@
+{
+	"index.html": {
+		"resources": [
+			"fonts/iconfont.css",
+			"js/fastclick.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"search.html"
+		],
+		"refer": [
+			"search.html"
+		]
+	},
+	"search.html": {
+		"resources": [
+			"fonts/iconfont.css",
+			"js/mui.js",
+			"css/mui.css",
+			"fonts/iconfont.woff",
+			"index.html"
+		],
+		"refer": [
+			"index.html"
+		]
+	}
+}

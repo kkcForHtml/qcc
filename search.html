@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>搜索</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/mui.css" />
+		<link rel="stylesheet" type="text/css" href="fonts/iconfont.css" />
+		<script src="js/mui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    	<script src="js/fastclick.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			.mui-bar{
+				background: rgba(18,139,237,1);
+				border-bottom: 1px solid #eee;
+			}
+
+			.icon-xiangzuojiantou{
+				color: #fff;
+				font-size: 14px;
+				display: inline-block;
+				vertical-align: middle;
+				margin-left: -6px;
+				margin-right: 8px;
+			}
+			.mui-bar:before,.more-contain:before{
+			    content:"";
+			    display:inline-block;
+			    height:100%;
+			    vertical-align:middle;				
+			}
+			.search-box{
+				width: 90%;
+				display: inline-block;
+				vertical-align:middle;		
+			}
+	    	.mui-search{
+	    		padding-right: 8px;
+	    	}
+	    	.mui-placeholder span{
+	    		font-size: 14px;		
+	    	}
+			input[type='search'] {
+			    background-color: rgba(255, 255, 255, 1);
+				font-size: 14px;
+	    		font-family: "微软雅黑";
+	    		color: #333;
+
+			}
+			.more-box{
+				height: 34px;
+				background: #fff;
+				border-bottom: 1px solid #eee;
+			}
+			.more-box .more-contain{
+				text-align: center;
+				color: rgb(70,70,70);
+				font-size: 14px;
+				height: 100%;
+			}
+			.more-box .more-contain i{
+				font-size: 12px;
+				margin-left: 2px;
+				vertical-align: middle;
+				transform: rotate(0deg);
+				transition: all .2s;
+			}
+			.more-box .more-contain i.cur{
+				transform: rotate(180deg);
+				color: #128cec;
+			}
+			.more-box .more-contain span{
+				vertical-align: middle;
+				transition: all .2s;				
+			}
+			.more-box .more-contain span.cur{
+				color: #128cec;				
+			}
+			.search-total{
+				height: 34px;
+				background: rgb(238,241,243);
+				line-height: 34px;
+				color: #999;
+				padding-left: 8px;
+			}
+			.search-total strong{
+				font-weight: normal;
+				color: rgb(255,81,81);
+				margin: 0 2px;
+			}
+			.search-result{
+				top: 113px;
+				background:rgb(238,241,243);
+			}
+			.search-result .result-cardview{
+				font-family: "微软雅黑";
+				letter-spacing: 1px;
+				height: 160px;
+				background: #fff;
+				border-top: 1px solid #eee;
+				border-bottom: 2px solid #eee;
+				margin-bottom: 12px;
+				padding-left: 10px;
+				position: relative;
+			}
+			.search-result .result-cardview:first-child{
+				border-top: none;
+			}
+			.search-result .result-cardview .header{
+				height: 44px;
+				line-height: 44px;
+			}
+			.search-result .result-cardview .header div{
+				color: #ff5151;
+				height: 100%;
+				font-size: 14px;
+				font-weight: normal;
+				width: 78%;
+				float: left;
+
+			}
+			.search-result .result-cardview .header button{
+				float: left;
+				color: #67dca7;
+				border-color: #67dca7;
+				padding: 2px 6px;
+				margin-top: 10px;
+			}
+			.search-result .result-cardview .container p{
+				height: 30px;
+				line-height: 30px;
+				color: #999;
+				margin-bottom: 4px;
+				font-size: 13px;
+			}
+			.search-result .result-cardview .container p span{
+				color: #666666;
+				margin-left: 4px;
+			}
+			.search-result .result-cardview  i{
+				width: 20px;
+				height: 20px;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				right: 5%;
+				margin: auto;
+				color: #999;
+				font-size: 20px;
+			}					
+		</style>
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="iconfont icon-xiangzuojiantou"></a>
+			<div class="search-box">
+				<div class="mui-input-row mui-search">
+				    <input type="search" class="mui-input-clear" placeholder="请输入企业、人名、地址等关键字">
+				</div>								
+			</div>
+						
+		</header>
+		<div class="mui-content">
+			<div class="more-box mui-row">
+				<div class="mui-col-xs-4 more-area more-contain" id="area">
+					<span class="cur">全国</span><i class="mui-icon mui-icon-arrowdown cur"></i>
+				</div>
+				<div class="mui-col-xs-4 more-area more-contain" id="area">
+					<span>全部行业</span><i class="mui-icon mui-icon-arrowdown"></i>
+				</div>
+				<div class="mui-col-xs-4 more-area more-contain" id="area">
+					<span>更多筛选</span><i class="mui-icon mui-icon-arrowdown"></i>
+				</div>				
+			</div>
+			<div class="search-total">
+				搜索到<strong>18</strong>个公司
+			</div>
+			<div class="mui-scroll-wrapper search-result">
+				<div class="mui-scroll">
+					<div class="result-cardview">
+						<div class="header">
+							<div>小米科技责任有限公司</div>
+							<button type="button" class="mui-btn mui-btn-success mui-btn-outlined">在业</button>
+						</div>
+						<div class="container">
+							<p>法定代表人:<span>雷军</span></p>
+							<p>注册资本:<span>100000万</span></p>
+							<p>成立日期:<span>2015-09-21</span></p>
+						</div>
+						<i class="mui-icon mui-icon-forward"></i>
+					</div>
+					<div class="result-cardview">
+						<div class="header">
+							<div>小米科技责任有限公司</div>
+							<button type="button" class="mui-btn mui-btn-success mui-btn-outlined">在业</button>
+						</div>
+						<div class="container">
+							<p>法定代表人:<span>雷军</span></p>
+							<p>注册资本:<span>100000万</span></p>
+							<p>成立日期:<span>2015-09-21</span></p>
+						</div>
+						<i class="mui-icon mui-icon-forward"></i>
+					</div>
+					<div class="result-cardview">
+						<div class="header">
+							<div>小米科技责任有限公司</div>
+							<button type="button" class="mui-btn mui-btn-success mui-btn-outlined">在业</button>
+						</div>
+						<div class="container">
+							<p>法定代表人:<span>雷军</span></p>
+							<p>注册资本:<span>100000万</span></p>
+							<p>成立日期:<span>2015-09-21</span></p>
+						</div>
+						<i class="mui-icon mui-icon-forward"></i>
+					</div>
+					<div class="result-cardview">
+						<div class="header">
+							<div>小米科技责任有限公司</div>
+							<button type="button" class="mui-btn mui-btn-success mui-btn-outlined">在业</button>
+						</div>
+						<div class="container">
+							<p>法定代表人:<span>雷军</span></p>
+							<p>注册资本:<span>100000万</span></p>
+							<p>成立日期:<span>2015-09-21</span></p>
+						</div>
+						<i class="mui-icon mui-icon-forward"></i>
+					</div>
+
+				</div>
+			</div>			
+		</div>
+		<script type="text/javascript">
+			$(function () {
+				mui.init();
+				var scroll_height = $(window).height()-112;
+				$('.search-result').css('height',scroll_height);
+				mui('.mui-scroll-wrapper').scroll({
+					scrollY: true, //是否竖向滚动
+					scrollX: false, //是否横向滚动
+					startX: 0, //初始化时滚动至x
+					startY: 0, //初始化时滚动至y
+					indicators: false, //是否显示滚动条
+					deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
+					bounce: true //是否启用回弹
+				});				
+				FastClick.attach(document.body);
+			})
+		</script>
+	</body>
+
+</html>
